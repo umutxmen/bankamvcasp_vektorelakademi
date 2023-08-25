@@ -1,0 +1,128 @@
+﻿
+<div class="right-sidebar">
+    <div class="right-sidebar-header">
+        <div class="sidebar-logo">
+            <img src="~/admin/dist/img/pblogo.png" alt="Logo" class="logo-image">
+        </div>
+        <h4>Proje Bank</h4>
+    </div>
+    <div class="right-sidebar-content">
+        <!-- Menü öğeleri buraya eklenebilir -->
+        <a href="/Admin/MusteriVarlik/Index" class="menu-item">
+          Müşteri Varlıkları
+        </a>
+        <a href="/Admin/Kartlar/Index" class="menu-item">
+          Kartlar
+        </a>
+        <a href="/Admin/Doviz/Index" class="menu-item">
+            Döviz Varlıklarım
+        </a>
+        <a href="#" class="menu-item">
+            Kartlar
+        </a>
+        <a href="/Admin/DolarHesap/Index" class="menu-item">
+            Dolar Varlıklarım</a>
+        <a href="/Admin/EuroHesap/Index" class="menu-item">
+            Euro Varlıklarm
+        </a>
+        <a href="/Admin/vergiborcuöde/Index" class="menu-item">
+            Vergi Borcu Öde
+        </a>
+        <!-- Diğer menü öğeleri -->
+    </div>
+    <div class="logout-button">
+        Çıkış Yap
+    </div>
+</div>
+
+<style>
+ 
+    .right-sidebar-header h4 {
+        color: white;
+        font-size: 30x;
+        margin: 20px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .right-sidebar {
+        /* Gerekli stil ayarlarını yapın */
+        position: fixed;
+        top: 0;
+        left: 0; /* Bu satır menünün sağ tarafta kalmasını sağlar */
+        width: 250px;
+        height: 100%;
+        overflow-y: auto;
+        background: linear-gradient(to bottom, green, black);
+        color: white;
+        transition: right 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        z-index: 1000;
+    }
+
+        .right-sidebar.active {
+            right: 0; /* Menü açıldığında görünür olacak şekilde */
+        }
+
+    .right-sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid white;
+    }
+
+    .right-sidebar-content {
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-item {
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.2s;
+        display: block;
+        padding: 10px 20px;
+        background: linear-gradient(to right, green, black);
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+        .menu-item:hover {
+            opacity: 0.8;
+        }
+
+    
+   .logout-button
+
+    {
+        /* Çıkış yap butonu stil özellikleri */
+        padding: 15px;
+        background: linear-gradient(to right, #ff0000, grey); /* Kırmızıdan beyaza gradyan */
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 15px;
+        margin: auto; /* Ortala */
+        width: 80%; /* Genişliği ayarla */
+        margin-bottom: 20px; /* Alt boşluk bırak */
+    }
+
+    .sidebar-logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 0px;
+        margin: auto; /* Ortala */
+    }
+
+    .logo-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>

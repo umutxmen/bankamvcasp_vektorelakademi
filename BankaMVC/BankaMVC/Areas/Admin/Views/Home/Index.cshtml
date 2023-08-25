@@ -1,0 +1,120 @@
+﻿@using BankaMVC.Areas.Admin.Models
+
+@model List<VadeliTLHesapItem>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            font-size: 24px;
+        }
+
+        .chart-panel {
+            background-color: #f4f4f4;
+            width: 80%;
+            margin:60;
+            padding: 1px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-box {
+            width: 300px;
+            height: 300px;
+            margin-top: 50px;
+            background-color: palegoldenrod,indianred;
+            transition: background-color 0.3s;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .clock-box {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 40px;
+            background-color: yellow;
+            border-radius: 15px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Proje Bank Admin Panel'e Hoşgeldiniz
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-panel">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="chart-panel">
+                    <div class="image-box" id="userImageBox"></div>
+                </div>
+                <div class="clock-box" id="liveClock"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var images = [
+            'http://i.bigpara.com/i/55big/fargo_6644.jpg',
+            'https://uzemigunsem.gedik.edu.tr/uploads/duyuruGorsel/20230313115251_B%C3%BCro_Hizmetleri_B%C3%B6l%C3%BCm%C3%BC_Nedir.png',
+        ];
+        var imageIndex = 0;
+
+        function changeImage() {
+            var imageBox = document.getElementById('userImageBox');
+            imageBox.style.backgroundImage = `url('${images[imageIndex]}')`;
+            imageIndex = (imageIndex + 1) % images.length;
+        }
+
+        function updateClock() {
+            var clockElement = document.getElementById('liveClock');
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            clockElement.innerHTML = hours + ':' + minutes + ':' + seconds;
+        }
+
+        setInterval(changeImage, 3000); // 3 saniyede bir resimleri değiştir
+        setInterval(updateClock, 1000); // 1 saniyede bir saati güncelle
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Kategori 1', 'Kategori 2', 'Kategori 3', 'Kategori 4', 'Kategori 5'],
+                datasets: [{
+                    label: 'Veriler',
+                    data: [45, 30, 20, 15, 10],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9F40'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

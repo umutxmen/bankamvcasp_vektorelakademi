@@ -1,0 +1,537 @@
+﻿@using BankaMVC.Models
+
+@model List<MusteriDataItem2>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section customStyles{
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/admin/plugins/sweetalert2/sweetalert2.css">
+}
+
+@section customScripts{
+    <script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/jszip/jszip.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script src="~/admin/plugins/sweetalert2/sweetalert2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#example1").DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json',
+                },
+                order: [
+                    [2, 'desc']
+                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "orderable": false,
+                },
+                {
+                    "targets": 1,
+                    "orderable": false,
+                }],
+                "lengthChange": false,
+                "paging": false,
+                "buttons": ["excel", "pdf"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+            $("#btnSave").click(function () {
+                // NOT : Client'dan server a javascript kullanarak dosya transferi yapacaksınız, ilgili dosya verisini FormData isim javascript nesnesi içerisinde sunucuya transfer etmelisiniz. Transfer edilecek data, FormData nesnesi içerisine append edilerek eklenir.
+                // NOT : Client'dan server'a FormData ile veriyi taşırken ajax tablebine aş parametreler de eklenmelidir:
+                //contentType: false,
+                //processData: false,
+
+                var file = $("#fuMusteriPhoto").get(0).files[0];
+                var MusteriAD = $("#txtMusteriAD").val();
+                var MusteriSoYAD = $("#txtMusteriSoYAD").val();
+                var MusteriTC = $("#txtMusteriTC").val();
+                var MusteriTEL = $("#txtMusteriTEL").val();
+                var MusteriMeslek = $("#txtMusteriMeslek").val();
+                var MusteriAdres = $("#txtMusteriTEL").val();
+                var MusteriEmail = $("#txtMusteriEmail").val();
+                var MusteriAnneliksoyad = $("#txtMusteriAnneliksoyad").val();
+
+                var formData = new FormData();
+                formData.append("MusteriAD", MusteriAD);
+                formData.append("MusteriSoYAD", MusteriSoYAD);
+                formData.append("MusteriTC", MusteriTC);
+                formData.append("MusteriTEL", MusteriTEL);
+                formData.append("MusteriMeslek", MusteriMeslek);
+                formData.append("MusteriAdres", MusteriAdres);
+                formData.append("MusteriEmail", MusteriEmail);
+                formData.append("MusteriAnneliksoyad", MusteriAnneliksoyad);
+                formData.append("musteriPhoto", file);
+
+                $.ajax({
+                    url: "/Admin/musteridata2/Save",
+                    method: "post",
+                    datatype: "json",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'İşlem Başarılı',
+                                text: response.message,
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Tamam'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    //$("#txtCategoryName").val("");
+                                    //$("#txtDescription").val("");
+                                    //------------------------------------
+
+                                    // javascript ile html deki bir elemanın click olayını tetiklemek:
+                                    //$("#btnClear").trigger("click");
+                                    //-------------------------------------
+
+                                    // javascript ile sayfayı yenilemek :
+                                    //window.location.reload();
+
+                                    //------------------------------------------------
+
+                                    $("#btnClear").trigger("click");
+
+                                    $("a[href='#tab_2']").removeClass("active");
+                                    $("a[href='#tab_1']").addClass("active");
+
+                                    $("#tab_2").removeClass("active");
+                                    $("#tab_1").addClass("active");
+                                    location.reload(); // Sayfayı yenile
+
+                                    // elemanın yaptığı kaydı html içindeki table a bir tr daha ekleyerek göster
+
+
+                                }
+                            });
+                        }
+                        else {
+                            Swal.fire(
+                                'İşlem Başarısız',
+                                response.message,
+                                'error'
+                            )
+                        }
+                    }
+                })
+
+            });
+
+            $(".btnDelete").click(function () {
+
+                // $(this) --> bu olayı çalıştıran html elementidir
+                var categoryId = $(this).attr("musteriDataID");
+
+                Swal.fire({
+                    title: 'Emin misiniz?',
+                    text: "Silme işlemi geri alınamaz!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sil!',
+                    cancelButtonText: 'Vazgeç!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // sunucuya veriyi gönderip silinmesini sağlayacağız
+
+                        $.ajax({
+                            url: "/Admin/musteridata/Delete/" + categoryId,
+                            method: "post",
+                            datatype: "json",
+                            success: function (response) {
+                                if (response.isSuccess) {
+                                    Swal.fire('İşlem Başarılı', response.message, 'success')
+                                    location.reload(); // Sayfayı yenile
+
+                                }
+                                else {
+                                    var errors = "";
+                                    for (var i = 0; i < response.errorMessages.length; i++) {
+                                        errors += response.errorMessages[i] + "<br />";
+                                    }
+
+                                    Swal.fire('İşlem Başarısız', response.message + "<br />" + errors, 'error')
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire('İşlem İptal Edildi', '', 'info')
+                    }
+                })
+            });
+
+            $(".btnEdit").click(function () {
+
+                var musteriID = $(this).attr("musteriDataID");
+
+                $.ajax({
+                    url: "/musteridata2/getmusteridata2/" + musteriID,
+                    method: "post",
+                    datatype: "json",
+                    success: function (response) {
+                        $("#txtmusteriDataIDEdit").val(response.musteriDataID);
+                        $("#txtMusteriADEdit").val(response.musteriAD);
+                        $("#txtMusteriSoYADEdit").val(response.musteriSoYAD);
+                        $("#txtMusteriTCEdit").val(response.musteriTC);
+                        $("#txtMusteriTELEdit").val(response.musteriTEL);
+                        $("#txtMusteriMeslekEdit").val(response.musteriMeslek);
+                        $("#txtMusteriAdresEdit").val(response.musteriAdres);
+                        $("#txtMusteriEmailEdit").val(response.musteriEmail);
+                        $("#txtMusteriAnneliksoyadEdit").val(response.musteriAnneliksoyad)
+                        $("#imgCategoryPhotoEdit").attr("src", response.picturePath);
+                        $("#hfmusteriDataID").val(response.musteriDataID);
+
+                        $("#exampleModal").modal("show");
+                    }
+                });
+
+            });
+
+            $("#btnPut").click(function () {
+
+                var musteriDataID = $("#txtmusteriDataIDEdit").val();
+                var MusteriAD = $("#txtMusteriADEdit").val();
+                var MusteriSoYAD = $("#txtMusteriSoYADEdit").val();
+                var MusteriTC = $("#txtMusteriTCEdit").val();
+                var MusteriTEL = $("#txtMusteriTELEdit").val();
+                var MusteriMeslek = $("#txtMusteriMeslekEdit").val();
+                var MusteriAdres = $("#txtMusteriAdresEdit").val();
+                var MusteriEmail = $("#txtMusteriEmailEdit").val();
+                var MusteriAnneliksoyad = $("#txtMusteriAnneliksoyadEdit").val();
+                var file = $("#fuCategoryPhotoEdit").get(0).files[0];
+
+
+                var formData = new FormData();
+                formData.append("MusteriDataID", musteriDataID);
+                formData.append("MusteriAD", MusteriAD);
+                formData.append("MusteriSoYAD", MusteriSoYAD);
+                formData.append("MusteriTC", MusteriTC);
+                formData.append("MusteriTEL", MusteriTEL);
+                formData.append("MusteriMeslek", MusteriMeslek);
+                formData.append("MusteriAdres", MusteriAdres);
+                formData.append("MusteriEmail", MusteriEmail);
+                formData.append("MusteriAnneliksoyad", MusteriAnneliksoyad);
+                formData.append("musteriPhoto", file);
+                $("#exampleModal").modal("hide");
+                $.ajax({
+                    url: "/Admin/musteridata/Update",
+                    method: "put",
+                    datatype: "json",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+
+                    success: function (response, status, xhr) {
+                        if (response.isSuccess) {
+                            location.reload(); // Sayfayı yenile
+
+                            Swal.fire({
+                                title: 'İşlem Başarılı',
+                                text: response.message,
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Tamam'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire('Kayıt Tamam', response.message, 'success')
+                                }
+                            });
+                        }
+                        else {
+
+                            location.reload(); // Sayfayı yenile
+
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        if (xhr.status === 500) {
+                            // 500 hatasını yok say, ancak konsolda uyarı ver
+                            location.reload(); // Sayfayı yenile
+
+                        } else {
+                            // Diğer hataların işlenmesi
+                            console.error("Hata:", xhr.responseText);
+                        }
+                    }
+
+                })
+
+            });
+
+
+        });
+    </script>
+
+}
+<style>
+
+
+    .right-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0; /* Bu satır menünün sağ tarafta kalmasını sağlar */
+        width: 250px;
+        height: 100%;
+    
+        overflow-y: auto;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <!-- Custom Tabs -->
+        <div class="card">
+            <div class="card-header d-flex p-0">
+                <h3 class="card-title p-3">Kategori Yönetimi</h3>
+                <ul class="nav nav-pills ml-auto p-2">
+                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Liste</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Yeni</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th>#</th>
+                                    <th>#</th>
+                                    <th>MusteriAD</th>
+                                    <th>MusteriSoYAD</th>
+                                    <th>MusteriTC</th>
+                                    <th>MusteriTEL</th>
+                                    <th>MusteriMeslek</th>
+                                    <th>MusteriAdres</th>
+                                    <th>MusteriEmail</th>
+                                    <th>MusteriAnneliksoyad</th>
+                                    <th>#</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.PicturePath))
+                                            {
+                                                <img src='@($"{item.PicturePath}")' on style="width:75px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/admin/noImage.png" style="width:150px;" />
+                                            }
+
+                                        </td>
+                                        <th>@item.MusteriDataID</th>
+                                        <th>@item.MusteriAD</th>
+                                        <th>@item.MusteriSoYAD</th>
+                                        <th>@item.MusteriTC</th>
+                                        <th>@item.MusteriTEL</th>
+                                        <th>@item.MusteriMeslek</th>
+                                        <th>@item.MusteriAdres</th>
+                                        <th>@item.MusteriEmail</th>
+                                        <th>@item.MusteriAnneliksoyad</th>
+
+                                        <td>
+                                            <button type="button" class="btn btn-warning btnEdit" musteriDataID='@item.MusteriDataID'>
+                                                DÜZENLE
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btnDelete" musteriDataID='@item.MusteriDataID'>SİL</button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Yeni Kategori Kayıt Formu</h3>
+                            </div>
+                            <form>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriAD</label>
+                                        <input type="text" class="form-control" id="txtMusteriAD" placeholder="MusteriAD">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriSoYAD</label>
+                                        <input type="text" class="form-control" id="txtMusteriSoYAD" placeholder="MusteriSoYAD">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriTC</label>
+                                        <input type="text" class="form-control" id="txtMusteriTC" placeholder="MusteriTC">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriTEL</label>
+                                        <input type="text" class="form-control" id="txtMusteriTEL" placeholder="MusteriTEL">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriMeslek</label>
+                                        <input type="text" class="form-control" id="txtMusteriMeslek" placeholder="MusteriMeslek">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriAdres</label>
+                                        <input type="text" class="form-control" id="txtMusteriAdres" placeholder="MusteriAdres">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriEmail</label>
+                                        <input type="text" class="form-control" id="txtMusteriEmail" placeholder="MusteriEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriAnneliksoyad</label>
+                                        <input type="text" class="form-control" id="txtMusteriAnneliksoyad" placeholder="MusteriAnneliksoyad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Resim</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="fuMusteriPhoto">
+                                                <label class="custom-file-label" for="exampleInputFile">Dosya Seçiniz</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button id="btnSave" type="button" class="btn btn-primary">Kaydet</button>
+                                </div>
+
+
+                                <button id="btnClear" type="reset" style="display:none;"></button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+        <!-- ./card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+
+
+
+
+<div class="modal fade" data-backdrop="static" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Müşteri Düzenleme Formu</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    @*Aşağıdaki hidden input içerisinde güncellenmek istenen kategorinin id si tutuluyor. btnEdit e tıklandığında hangi kategorinin güncelleneceği bu inputtan okunabilir.*@
+                    <input type="hidden" id="hfmusteriDataID" />
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriDataID</label>
+                            <input type="text" class="form-control" id="txtmusteriDataIDEdit" placeholder="musteriDataID">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriAD</label>
+                            <input type="text" class="form-control" id="txtMusteriADEdit" placeholder="MusteriAD">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriSoYAD</label>
+                            <input type="text" class="form-control" id="txtMusteriSoYADEdit" placeholder="MusteriSoYAD">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriTC</label>
+                            <input type="text" class="form-control" id="txtMusteriTCEdit" placeholder="MusteriTC">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriTEL</label>
+                            <input type="text" class="form-control" id="txtMusteriTELEdit" placeholder="MusteriTEL">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriMeslek</label>
+                            <input type="text" class="form-control" id="txtMusteriMeslekEdit" placeholder="MusteriMeslek">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriAdres</label>
+                            <input type="text" class="form-control" id="txtMusteriAdresEdit" placeholder="MusteriAdres">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriEmail</label>
+                            <input type="text" class="form-control" id="txtMusteriEmailEdit" placeholder="MusteriEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriAnneliksoyad</label>
+                            <input type="text" class="form-control" id="txtMusteriAnneliksoyadEdit" placeholder="MusteriAnneliksoyad">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Resim</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="fuCategoryPhotoEdit">
+                                    <label class="custom-file-label" for="exampleInputFile">Dosya Seçiniz</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kategori Resmi</label>
+                            <img id="imgCategoryPhotoEdit" style="width:75px;" />
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button id="btnPut" type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+
+
+                    <button id="btnClearEdit" type="reset" style="display:none;"></button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-sidebar">
+    <!-- Sayfa içeriği -->
+    <!-- Sağ taraftaki menü kutusu -->
+    @Html.Partial("_SideBars")
+</div>

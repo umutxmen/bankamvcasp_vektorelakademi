@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giriş Sayfası</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #3498db, #000000); /* Mavi ile siyah gradyan */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Diğer stiller burada... */
+
+        .content-panel {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .custom-button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .admin-button {
+            background-color: blue;
+        }
+
+        .customer-button {
+            background-color: black;
+        }
+
+        .welcome-text {
+            font-size: 30px; /* Daha büyük boyut */
+            font-weight: bold;
+            color: black;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-family: "Arial", sans-serif; /* Örnek olarak Arial fontu */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-panel">
+        <div class="welcome-text">Proje Bank'a Hoşgeldiniz</div>
+
+        <div class="center-container">
+            <button id="adminButton" class="custom-button admin-button">Admin Giriş</button>
+            <button id="customerButton" href="" class="custom-button customer-button">Müşteri Giriş</button>
+        </div>
+    </div>
+
+    <script>
+        // Admin butonuna tıklanınca çalışacak fonksiyon
+        document.getElementById("adminButton").addEventListener("click", function () {
+            adminLogin();
+        });
+
+        // Müşteri butonuna tıklanınca çalışacak fonksiyon
+        document.getElementById("customerButton").addEventListener("click", function () {
+            customerLogin();
+        });
+
+        // Admin girişi işlemleri
+        function adminLogin() {
+            // Burada admin giriş işlemleri yapılabilir
+            window.location.href = "/Admin";
+        }
+
+        // Müşteri girişi işlemleri
+        function customerLogin() {
+            // Burada müşteri giriş işlemleri yapılabilir
+            window.location.href = "/AdminUser2/LogIn";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+﻿@using BankaMVC.Areas.Admin.Models
+@model AdminUserItem
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+           <a href="/home" class="brand-link">
+        <img src="~/admin/dist/img/pblogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Proje Bank</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                <a href="/Admin/Home/Index" class="d-block">
+                          @Model.FullName
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+               
+                <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">YETKİLİ MENÜSÜ</li>
+
+                <!-- Bankacılık -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Bankacılık
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/DolarHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dolar Hesapları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/EuroHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Euro Hesapları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/SterlinHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sterlin Hesapları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/Doviz/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dövizler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/Eft/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>EFTLER</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/EuroSwift/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Euro Swiftleri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/DolarSwift/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dolar Swiftleri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/tlhavale/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Havaleler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/VadeliTLHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Vadeli TL Hesaplar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/VadesizTLHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Vadesiz TL Hesaplar</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Kredi Kartları -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Kredi Kartları
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/kredikartı/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kredi Kartları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/hızlıkredi/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hızlı Krediler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/KartaParaAktar/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Karta Para Aktarma İşlemleri</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Finansal İşlemler -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Finansal İşlemler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/Eft/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>EFTLER</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/tlhavale/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Havaleler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/vergiborcuöde/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Vergi Borcu Öde</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Hesaplar -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Hesaplar
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/MusteriData/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Müşteri Dataları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/MusteriVarlik/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Müşteri Varlıkları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/BankaBilgi/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bankalar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/BankaKarti/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banka Kartları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/GumusHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Gümüş Hesapları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/Harcama/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Harcamalar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/KurKorumalıHesap/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kur Korumalı Hesaplar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/NakitAvans/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nakit Avans İşlemleri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/SanalKart/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sanal Kartlar</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Kartlar -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Kartlar
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/Kartlar/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kartlar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/kredikartı/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kredi Kartları</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/BankaKarti/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banka Kartları</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Diğer -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Diğer
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/Admin/EuroSwift/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Euro Swiftleri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/DolarSwift/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dolar Swiftleri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/FaturaOde/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Faturalar</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>

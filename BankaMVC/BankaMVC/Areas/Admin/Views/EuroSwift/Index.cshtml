@@ -1,0 +1,470 @@
+﻿@using BankaMVC.Areas.Admin.Models
+
+@model List<EuroSwiftItem>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section customStyles{
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/admin/plugins/sweetalert2/sweetalert2.css">
+}
+
+@section customScripts{
+    <script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/jszip/jszip.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script src="~/admin/plugins/sweetalert2/sweetalert2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#example1").DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json',
+                },
+                order: [
+                    [2, 'desc']
+                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "orderable": false,
+                },
+                {
+                    "targets": 1,
+                    "orderable": false,
+                }],
+                "lengthChange": false,
+                "paging": false,
+                "buttons": ["excel", "pdf"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $("#btnSave").click(function () {
+                // NOT : Client'dan server a javascript kullanarak dosya transferi yapacaksınız, ilgili dosya verisini FormData isim javascript nesnesi içerisinde sunucuya transfer etmelisiniz. Transfer edilecek data, FormData nesnesi içerisine append edilerek eklenir.
+                // NOT : Client'dan server'a FormData ile veriyi taşırken ajax tablebine aş parametreler de eklenmelidir:
+                //contentType: false,
+                //processData: false,
+
+
+                var MusteriID = $("#txtMusteriID").val();
+                var GidenHesapIban = $("#txtGidenHesapIban").val();
+                var AlanHesapIban = $("#txtAlanHesapIban").val();
+                var SwiftTarihi = $("#txtSwiftTarihi").val();
+                var Miktar = $("#txtMiktar").val();
+                var SwiftKodu = $("#txtSwiftKodu").val();
+                var Aciklama = $("#txtAciklama").val();
+
+                var formData = new FormData();
+                formData.append("MusteriID", MusteriID);
+                formData.append("GidenHesapIban", GidenHesapIban);
+                formData.append("AlanHesapIban", AlanHesapIban);
+                formData.append("SwiftTarihi", SwiftTarihi);
+                formData.append("Miktar", Miktar);
+                formData.append("SwiftKodu", SwiftKodu);
+                formData.append("Aciklama", Aciklama);
+
+                $.ajax({
+                    url: "/Admin/EuroSwift/Save", // Verilerin gönderileceği URL'yi güncelleyin
+                    method: "post",
+                    datatype: "json",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'İşlem Başarılı',
+                                text: response.message,
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Tamam'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                            
+
+                                    $("#btnClear").trigger("click");
+
+                                    $("a[href='#tab_2']").removeClass("active");
+                                    $("a[href='#tab_1']").addClass("active");
+
+                                    $("#tab_2").removeClass("active");
+                                    $("#tab_1").addClass("active");
+
+                                    // elemanın yaptığı kaydı html içindeki table a bir tr daha ekleyerek göster
+
+                                    $("#example1 tbody").append("<tr><td>" + BankaSubeNo + "</td><td>" + BankaSehir + "</td><td>" + Bankaİlce + "</td><td>" + BankaAdres + "</td><td>" + BankaTel + "</td><td>DÜZENLE</td><td><button type='button' class='btn btn-danger btnDelete' bankaId='" + response.bankaId + "'>SİL</button></td></tr>");
+                                    Swal.fire('Kayıt Tamam', response.message, 'success')
+
+                                }
+                            });
+                        }
+                        else {
+                            Swal.fire(
+                                'İşlem Başarısız',
+                                response.message,
+                                'error'
+                            )
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        if (xhr.status === 500) {
+                            // 500 hatasını yok say, ancak konsolda uyarı ver
+                            location.reload(); // Sayfayı yenile
+
+                        } else {
+                            // Diğer hataların işlenmesi
+                            console.error("Hata:", xhr.responseText);
+                        }
+                    }
+                })
+
+            });
+
+            $(".btnDelete").click(function () {
+
+                // $(this) --> bu olayı çalıştıran html elementidir
+                var euroSwiftId = $(this).attr("euroSwiftId");
+
+                Swal.fire({
+                    title: 'Emin misiniz?',
+                    text: "Silme işlemi geri alınamaz!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sil!',
+                    cancelButtonText: 'Vazgeç!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // sunucuya veriyi gönderip silinmesini sağlayacağız
+
+                        $.ajax({
+                            url: "/Admin/DolarHesap/Delete/" + euroSwiftId,
+                            method: "post",
+                            datatype: "json",
+                            success: function (response) {
+                                if (response.isSuccess) {
+                                    Swal.fire('İşlem Başarılı', response.message, 'success')
+                                    location.reload(); // Sayfayı yenile
+
+                                }
+                                else {
+                                    var errors = "";
+                                    for (var i = 0; i < response.errorMessages.length; i++) {
+                                        errors += response.errorMessages[i] + "<br />";
+                                    }
+
+                                    Swal.fire('İşlem Başarısız', response.message + "<br />" + errors, 'error')
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire('İşlem İptal Edildi', '', 'info')
+                    }
+                })
+            });
+
+            $(".btnEdit").click(function () {
+
+                var euroSwiftID = $(this).attr("euroSwiftId");
+
+                $.ajax({
+                    url: "/Admin/EuroSwift/GetEuroSwift/" + euroSwiftID,
+                    method: "post",
+                    datatype: "json",
+                    success: function (response) {
+                        $("#txtEuroSwiftIDEdit").val(response.euroSwiftID);
+                        $("#txtMusteriIDEuroEdit").val(response.musteriID);
+                        $("#txtGidenHesapIbanEdit").val(response.gidenHesapIban);
+                        $("#txtAlanHesapIbanEdit").val(response.alanHesapIban);
+                        $("#txtSwiftTarihiEdit").val(response.swiftTarihi);
+                        $("#txtMiktarEdit").val(response.miktar);
+                        $("#txtSwiftKoduEdit").val(response.swiftKodu);
+                        $("#txtAciklamaEdit").val(response.aciklama);
+                        $("#hfEuroSwiftID").val(euroSwiftID);
+
+                        $("#exampleModal").modal("show");
+                    }
+                });
+
+            });
+      
+            $("#btnPut").click(function () {
+
+                var euroSwiftID = $("#txtEuroSwiftIDEdit").val();
+                var musteriID = $("#txtMusteriIDEuroEdit").val();
+                var gidenHesapIban = $("#txtGidenHesapIbanEdit").val();
+                var alanHesapIban = $("#txtAlanHesapIbanEdit").val();
+                var swiftTarihi = $("#txtSwiftTarihiEdit").val();
+                var miktar = $("#txtMiktarEdit").val();
+                var swiftKodu = $("#txtSwiftKoduEdit").val();
+                var aciklama = $("#txtAciklamaEdit").val();
+
+                var formData = new FormData();
+                formData.append("euroSwiftID", euroSwiftID);
+                formData.append("musteriID", musteriID);
+                formData.append("gidenHesapIban", gidenHesapIban);
+                formData.append("alanHesapIban", alanHesapIban);
+                formData.append("swiftTarihi", swiftTarihi);
+                formData.append("miktar", miktar);
+                formData.append("swiftKodu", swiftKodu);
+                formData.append("aciklama", aciklama);
+
+                $("#exampleModal").modal("hide");
+                $.ajax({
+                    url: "/Admin/EuroSwift/Update",
+                    method: "put",
+                    datatype: "json",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+
+                    success: function (response, status, xhr) {
+                        if (response.isSuccess) {
+                            location.reload(); // Sayfayı yenile
+
+                            Swal.fire({
+                                title: 'İşlem Başarılı',
+                                text: response.message,
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Tamam'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire('Kayıt Tamam', response.message, 'success')
+                                }
+                            });
+                        }
+                        else {
+
+                            Swal.fire(
+                                'İşlem Başarısız',
+                                response.message,
+                                'error'
+                            )
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        if (xhr.status === 500) {
+                            // 500 hatasını yok say, ancak konsolda uyarı ver
+                            location.reload(); // Sayfayı yenile
+
+                        } else {
+                            // Diğer hataların işlenmesi
+                            console.error("Hata:", xhr.responseText);
+                        }
+                    }
+
+                })
+
+            });
+
+
+        });
+    </script>
+
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <!-- Custom Tabs -->
+        <div class="card">
+            <div class="card-header d-flex p-0">
+                <h3 class="card-title p-3">Kategori Yönetimi</h3>
+                <ul class="nav nav-pills ml-auto p-2">
+                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Liste</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Yeni</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>#</th>
+                                    <th>EuroSwiftID</th>
+                                    <th>MusteriID</th>
+                                    <th>GidenHesapIban</th>
+                                    <th>AlanHesapIban</th>
+                                    <th>SwiftTarihi</th>
+                                    <th>Miktar</th>
+                                    <th>SwiftKodu</th>
+                                    <th>Aciklama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btnEdit" euroSwiftId='@item.EuroSwiftID'>
+                                                DÜZENLE
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btnDelete" euroSwiftId='@item.EuroSwiftID'>SİL</button>
+                                        </td>
+                                        <td>@item.EuroSwiftID</td>
+                                        <td>@item.MusteriID</td>
+                                        <td>@item.GidenHesapIban</td>
+                                        <td>@item.AlanHesapIban</td>
+                                        <td>@item.SwiftTarihi</td>
+                                        <td>@item.Miktar</td>
+                                        <td>@item.SwiftKodu</td>
+                                        <td>@item.Aciklama</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Yeni Kategori Kayıt Formu</h3>
+                            </div>
+                            <form>
+                                <div class="card-body">
+                                  
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">MusteriID</label>
+                                        <input type="text" class="form-control" id="txtMusteriID" placeholder="MusteriID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GidenHesapIban</label>
+                                        <input type="text" class="form-control" id="txtGidenHesapIban" placeholder="GidenHesapIban">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">AlanHesapIban</label>
+                                        <input type="text" class="form-control" id="txtAlanHesapIban" placeholder="AlanHesapIban">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">SwiftTarihi</label>
+                                        <input type="text" class="form-control" id="txtSwiftTarihi" placeholder="SwiftTarihi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Miktar</label>
+                                        <input type="text" class="form-control" id="txtMiktar" placeholder="Miktar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">SwiftKodu</label>
+                                        <input type="text" class="form-control" id="txtSwiftKodu" placeholder="SwiftKodu">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Aciklama</label>
+                                        <input type="text" class="form-control" id="txtAciklama" placeholder="Aciklama">
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button id="btnSave" type="button" class="btn btn-primary">Kaydet</button>
+                                </div>
+
+
+                                <button id="btnClear" type="reset" style="display:none;"></button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+        <!-- ./card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+
+
+
+
+<div class="modal fade" data-backdrop="static" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">DolarHesap Düzenleme Formu</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    @*Aşağıdaki hidden input içerisinde güncellenmek istenen kategorinin id si tutuluyor. btnEdit e tıklandığında hangi kategorinin güncelleneceği bu inputtan okunabilir.*@
+                    <input type="hidden" id="hfeuroswiftid" />
+
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">EuroSwiftID</label>
+                            <input type="text" class="form-control" id="txtEuroSwiftIDEdit" placeholder="EuroSwiftID">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">MusteriID</label>
+                            <input type="text" class="form-control" id="txtMusteriIDEuroEdit" placeholder="MusteriID">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">GidenHesapIban</label>
+                            <input type="text" class="form-control" id="txtGidenHesapIbanEdit" placeholder="GidenHesapIban">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">AlanHesapIban</label>
+                            <input type="text" class="form-control" id="txtAlanHesapIbanEdit" placeholder="AlanHesapIban">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">SwiftTarihi</label>
+                            <input type="text" class="form-control" id="txtSwiftTarihiEdit" placeholder="SwiftTarihi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Miktar</label>
+                            <input type="text" class="form-control" id="txtMiktarEdit" placeholder="Miktar">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">SwiftKodu</label>
+                            <input type="text" class="form-control" id="txtSwiftKoduEdit" placeholder="SwiftKodu">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Aciklama</label>
+                            <input type="text" class="form-control" id="txtAciklamaEdit" placeholder="Aciklama">
+                        </div>
+
+                        
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button id="btnPut" type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+
+
+                    <button id="btnClearEdit" type="reset" style="display:none;"></button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+>

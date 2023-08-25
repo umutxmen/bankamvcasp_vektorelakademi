@@ -1,0 +1,197 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BankaMVC
+build_property.RootNamespace = BankaMVC
+build_property.ProjectDir = C:\Users\umuts\OneDrive\Desktop\Ahlatçı\BankaMVC\BankaMVC\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\umuts\OneDrive\Desktop\Ahlatçı\BankaMVC\BankaMVC
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Authentication/LogIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXV0aGVudGljYXRpb25cTG9nSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/BankaBilgi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFua2FCaWxnaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/BankaKarti/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFua2FLYXJ0aVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/DolarHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRG9sYXJIZXNhcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/DolarSwift/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRG9sYXJTd2lmdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Doviz/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRG92aXpcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/EFT/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRUZUXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/EuroHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXVyb0hlc2FwXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/EuroSwift/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXVyb1N3aWZ0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/FaturaOde/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmF0dXJhT2RlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/GumusHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR3VtdXNIZXNhcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Harcama/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSGFyY2FtYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/HızlıKredi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSMSxemzEsUtyZWRpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/KartaParaAktar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2FydGFQYXJhQWt0YXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Kartlar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2FydGxhclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/KrediKartı/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS3JlZGlLYXJ0xLFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/KurKorumalıHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS3VyS29ydW1hbMSxSGVzYXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/MusteriData/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTXVzdGVyaURhdGFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/MusteriVarlik/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTXVzdGVyaVZhcmxpa1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/NakitAvans/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTmFraXRBdmFuc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/SanalKart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2FuYWxLYXJ0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Shared/Components/SideBar/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2lkZUJhclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/Shared/_NavBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9OYXZCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/SterlinHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3Rlcmxpbkhlc2FwXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/SterlinSwift/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RlcmxpblN3aWZ0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/TLHavale/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVExIYXZhbGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/VadeliTLHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmFkZWxpVExIZXNhcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/VadesizTLHesap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmFkZXNpelRMSGVzYXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Areas/Admin/Views/VergiBorcuÖde/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmVyZ2lCb3JjdcOWZGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/AdminUser2/LogIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyMlxMb2dJbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Main/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/MusteriData2/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaURhdGEyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/Components/SideBar/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2lkZUJhclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/_NavBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/_SideBars.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlQmFycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/umuts/OneDrive/Desktop/Ahlatçı/BankaMVC/BankaMVC/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1u09h5jitt
